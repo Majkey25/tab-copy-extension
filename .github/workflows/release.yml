@@ -1,0 +1,82 @@
+name: Release extension
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - manifest.json
+      - popup.html
+      - popup.css
+      - popup.js
+      - logic.js
+      - icons/**
+      - RELEASE_NOTES.md
+      - .github/workflows/release.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run tests
+        run: npm test
+
+      - name: Read extension version
+        id: version
+        shell: bash
+        run: |
+          VERSION=$(node -p "require('./manifest.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Build release archives
+        shell: bash
+        run: |
+          mkdir -p dist
+          zip -r "dist/tab-copy-extension.zip" \
+            manifest.json \
+            popup.html \
+            popup.css \
+            popup.js \
+            logic.js \
+            icons
+          cp "dist/tab-copy-extension.zip" "dist/tab-copy-extension-v${{ steps.version.outputs.version }}.zip"
+
+      - name: Create release when missing
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists."
+          else
+            gh release create "$TAG" \
+              --target "$GITHUB_SHA" \
+              --title "Tab Copy $TAG" \
+              --notes-file RELEASE_NOTES.md
+          fi
+
+      - name: Upload release archives
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          gh release upload "$TAG" \
+            dist/tab-copy-extension.zip \
+            "dist/tab-copy-extension-v${{ steps.version.outputs.version }}.zip" \
+            --clobber
