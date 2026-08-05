@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="660" viewBox="0 0 900 660" role="img" aria-labelledby="title desc">
+  <title id="title">Tab Copy popup preview</title>
+  <desc id="desc">A black and white preview of the extension popup with selected browser tabs.</desc>
+  <rect width="900" height="660" fill="#f4f4f4"/>
+  <rect x="180" y="50" width="540" height="560" fill="#fff" stroke="#000" stroke-width="3"/>
+
+  <line x1="180" y1="118" x2="720" y2="118" stroke="#000" stroke-width="2"/>
+  <text x="206" y="94" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800" letter-spacing="4">TAB COPY</text>
+  <text x="694" y="94" text-anchor="end" font-family="Courier New, monospace" font-size="15" font-weight="700">4 / 6</text>
+
+  <line x1="180" y1="184" x2="720" y2="184" stroke="#000" stroke-width="2"/>
+  <rect x="206" y="136" width="64" height="32" fill="#fff" stroke="#000" stroke-width="2"/>
+  <text x="238" y="157" text-anchor="middle" font-family="Courier New, monospace" font-size="12" font-weight="700">ALL</text>
+  <rect x="282" y="136" width="72" height="32" fill="#fff" stroke="#000" stroke-width="2"/>
+  <text x="318" y="157" text-anchor="middle" font-family="Courier New, monospace" font-size="12" font-weight="700">NONE</text>
+  <rect x="610" y="136" width="84" height="32" fill="#000"/>
+  <text x="652" y="157" text-anchor="middle" font-family="Courier New, monospace" font-size="12" font-weight="700" fill="#fff">COPY</text>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700">
+    <line x1="180" y1="248" x2="720" y2="248" stroke="#d7d7d7"/>
+    <rect x="206" y="207" width="16" height="16" fill="#000"/>
+    <text x="240" y="221" font-family="Courier New, monospace" font-size="12" fill="#666">01</text>
+    <text x="282" y="222">GitHub</text>
+
+    <line x1="180" y1="312" x2="720" y2="312" stroke="#d7d7d7"/>
+    <rect x="206" y="271" width="16" height="16" fill="#000"/>
+    <text x="240" y="285" font-family="Courier New, monospace" font-size="12" fill="#666">02</text>
+    <text x="282" y="286">Documentation</text>
+
+    <line x1="180" y1="376" x2="720" y2="376" stroke="#d7d7d7"/>
+    <rect x="206" y="335" width="16" height="16" fill="#000"/>
+    <text x="240" y="349" font-family="Courier New, monospace" font-size="12" fill="#666">03</text>
+    <text x="282" y="350">Project board</text>
+
+    <line x1="180" y1="440" x2="720" y2="440" stroke="#d7d7d7"/>
+    <rect x="206" y="399" width="16" height="16" fill="#000"/>
+    <text x="240" y="413" font-family="Courier New, monospace" font-size="12" fill="#666">04</text>
+    <text x="282" y="414">Pull request</text>
+
+    <line x1="180" y1="504" x2="720" y2="504" stroke="#d7d7d7"/>
+    <rect x="206" y="463" width="16" height="16" fill="#fff" stroke="#000" stroke-width="2"/>
+    <text x="240" y="477" font-family="Courier New, monospace" font-size="12" fill="#666">05</text>
+    <text x="282" y="478">Inbox</text>
+
+    <rect x="206" y="527" width="16" height="16" fill="#fff" stroke="#000" stroke-width="2"/>
+    <text x="240" y="541" font-family="Courier New, monospace" font-size="12" fill="#666">06</text>
+    <text x="282" y="542">YouTube</text>
+  </g>
+
+  <line x1="180" y1="568" x2="720" y2="568" stroke="#000" stroke-width="2"/>
+  <text x="206" y="592" font-family="Courier New, monospace" font-size="11" font-weight="700" fill="#666">SHIFT + CLICK SELECTS RANGE</text>
+  <text x="694" y="592" text-anchor="end" font-family="Courier New, monospace" font-size="11" font-weight="700">COPIED 4</text>
+</svg>

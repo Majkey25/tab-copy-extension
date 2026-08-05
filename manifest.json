@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Copy",
+  "version": "1.0.0",
+  "description": "Select tabs and copy their URLs in one clean list.",
+  "homepage_url": "https://github.com/Majkey25/tab-copy-extension",
+  "permissions": [
+    "tabs",
+    "clipboardWrite"
+  ],
+  "action": {
+    "default_title": "Tab Copy",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

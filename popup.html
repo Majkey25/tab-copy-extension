@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tab Copy</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <h1>TAB COPY</h1>
+        <output id="count" class="count" aria-live="polite">0 / 0</output>
+      </header>
+
+      <section class="toolbar" aria-label="Selection controls">
+        <div class="selection-actions">
+          <button id="all-button" class="button button-secondary" type="button">ALL</button>
+          <button id="none-button" class="button button-secondary" type="button">NONE</button>
+        </div>
+        <button id="copy-button" class="button button-primary" type="button" disabled>COPY</button>
+      </section>
+
+      <section id="tab-list" class="tab-list" aria-label="Open tabs"></section>
+
+      <footer class="footer">
+        <span>SHIFT + CLICK SELECTS RANGE</span>
+        <output id="status" class="status" aria-live="polite"></output>
+      </footer>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
