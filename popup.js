@@ -60,10 +60,18 @@ function render() {
   });
 
   elements.list.replaceChildren(fragment);
+  renderSelection();
+}
+
+function renderSelection() {
+  for (const checkbox of elements.list.querySelectorAll('input[data-position]')) {
+    const selected = selectedIds.has(tabs[Number(checkbox.dataset.position)].id);
+    checkbox.checked = selected;
+    checkbox.closest('.tab-row').classList.toggle('is-selected', selected);
+  }
   elements.count.textContent = `${selectedIds.size} / ${tabs.length}`;
 
-  const copyText = formatSelectedUrls(tabs, selectedIds);
-  elements.copyButton.disabled = copyText.length === 0;
+  elements.copyButton.disabled = !tabs.some((tab) => selectedIds.has(tab.id) && tab.url);
   elements.allButton.disabled = tabs.length === 0 || selectedIds.size === tabs.length;
   elements.noneButton.disabled = selectedIds.size === 0;
 }
@@ -93,20 +101,20 @@ function handleTabClick(event) {
     anchorIndex = position;
   }
 
-  render();
-  elements.list.querySelector(`input[data-position="${position}"]`)?.focus();
+  renderSelection();
+  checkbox.focus();
 }
 
 function selectAll() {
   selectedIds = new Set(tabs.map((tab) => tab.id));
   anchorIndex = null;
-  render();
+  renderSelection();
 }
 
 function selectNone() {
   selectedIds = new Set();
   anchorIndex = null;
-  render();
+  renderSelection();
 }
 
 async function copySelectedUrls() {
