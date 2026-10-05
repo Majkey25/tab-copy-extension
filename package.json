@@ -1,6 +1,6 @@
 {
   "name": "tab-copy-extension",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "Select browser tabs and copy their URLs in one clean list.",
   "type": "module",
