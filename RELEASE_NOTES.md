@@ -1,15 +1,10 @@
-# Tab Copy v1.0.0
+# Tab Copy v1.0.1
 
-Initial public release.
+## Changes
 
-## Features
-
-- Select individual tabs.
-- Select or clear a continuous range with Shift + Click.
-- Copy selected URLs in browser tab order.
-- Minimal black and white interface.
-- No analytics, tracking, storage, accounts, or network requests.
-- Chrome and Microsoft Edge support through Manifest V3.
+- Keep keyboard focus on a tab after selecting or deselecting it.
+- Add a popup link to privacy, clipboard retention, data deletion, and free-use information.
+- Include the privacy notice and MIT license in release archives.
 
 ## Installation
 

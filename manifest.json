@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Tab Copy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Select tabs and copy their URLs in one clean list.",
   "homepage_url": "https://github.com/Majkey25/tab-copy-extension",
   "permissions": [

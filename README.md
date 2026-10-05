@@ -134,7 +134,7 @@ GitHub Packages is intentionally not used. Browser extension ZIP files belong in
 
 ## Privacy
 
-Tab Copy works entirely inside the browser. It has no backend, telemetry, analytics, advertisements, or remote code.
+Tab Copy reads tab titles and URLs locally and writes selected URLs to your system clipboard. It has no backend, telemetry, analytics, advertisements, or remote code. System clipboard history/sync can retain separate copies. See [privacy, data deletion, and terms of use](PRIVACY.md).
 
 ## Contributing
 

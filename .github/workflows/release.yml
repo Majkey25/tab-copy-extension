@@ -12,6 +12,8 @@ on:
       - logic.js
       - icons/**
       - RELEASE_NOTES.md
+      - PRIVACY.md
+      - LICENSE
       - .github/workflows/release.yml
   workflow_dispatch:
 
@@ -52,6 +54,8 @@ jobs:
             popup.css \
             popup.js \
             logic.js \
+            PRIVACY.md \
+            LICENSE \
             icons
           cp "dist/tab-copy-extension.zip" "dist/tab-copy-extension-v${{ steps.version.outputs.version }}.zip"
 
