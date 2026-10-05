@@ -1,10 +1,10 @@
-# Tab Copy v1.0.1
+# Tab Copy v1.0.2
 
 ## Changes
 
-- Keep keyboard focus on a tab after selecting or deselecting it.
-- Add a popup link to privacy, clipboard retention, data deletion, and free-use information.
-- Include the privacy notice and MIT license in release archives.
+- Reuse tab rows when selection changes, preserving keyboard focus and range selection.
+- Format the selected URL list only when Copy is used.
+- In ten matched instrumented MV3 lab runs with 500 synthetic tabs, renderer task median fell from 58.63 to 8.85 ms. This is a selection-work measurement, not field INP or a general startup claim.
 
 ## Installation
 
