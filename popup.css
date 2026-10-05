@@ -22,6 +22,9 @@ input {
   font: inherit;
 }
 
+a { color: inherit; }
+
+a:focus-visible,
 button:focus-visible,
 input:focus-visible + .checkbox-mark,
 .tab-row:has(input:focus-visible) {

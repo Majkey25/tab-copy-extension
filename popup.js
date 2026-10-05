@@ -94,6 +94,7 @@ function handleTabClick(event) {
   }
 
   render();
+  elements.list.querySelector(`input[data-position="${position}"]`)?.focus();
 }
 
 function selectAll() {
