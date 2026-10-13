@@ -71,7 +71,12 @@ input:focus-visible + .checkbox-mark,
 }
 
 .toolbar {
+  flex-wrap: wrap;
   border-bottom: 1px solid #000000;
+}
+
+.paste-button {
+  width: 100%;
 }
 
 .selection-actions {

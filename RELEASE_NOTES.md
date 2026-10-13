@@ -1,10 +1,14 @@
-# Tab Copy v1.0.2
+# Tab Copy v1.1.0
 
 ## Changes
 
-- Reuse tab rows when selection changes, preserving keyboard focus and range selection.
-- Format the selected URL list only when Copy is used.
-- In ten matched instrumented MV3 lab runs with 500 synthetic tabs, renderer task median fell from 58.63 to 8.85 ms. This is a selection-work measurement, not field INP or a general startup claim.
+- Add **PASTE LINKS FROM CLIPBOARD** to open extracted web links as ordered tabs in one separate browser window.
+- Accept text lists, Markdown, HTML, JSON, CSV, and common separators. Domains without a protocol use HTTPS. Duplicate links retain their position.
+- Ignore malformed links and unsupported protocols. Empty clipboard text opens no window; clipboard or browser errors show **PASTE FAILED**.
+- Add `clipboardRead` permission. Clipboard text is read only after clicking Paste and is not stored or sent to the developer.
+- Keep existing tab selection and copy behavior.
+
+Trailing punctuation is treated as surrounding text. Percent-encode it when it belongs to a URL. Opening pasted links makes normal browser requests to those websites.
 
 ## Installation
 

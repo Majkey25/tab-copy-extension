@@ -2,12 +2,14 @@ import {
   applyRangeSelection,
   formatSelectedUrls,
   normalizeTabs,
+  parseClipboardUrls,
 } from './logic.js';
 
 const elements = {
   allButton: document.querySelector('#all-button'),
   noneButton: document.querySelector('#none-button'),
   copyButton: document.querySelector('#copy-button'),
+  pasteButton: document.querySelector('#paste-button'),
   count: document.querySelector('#count'),
   list: document.querySelector('#tab-list'),
   status: document.querySelector('#status'),
@@ -132,6 +134,24 @@ async function copySelectedUrls() {
   }
 }
 
+async function pasteClipboardLinks() {
+  elements.pasteButton.disabled = true;
+  try {
+    const urls = parseClipboardUrls(await navigator.clipboard.readText());
+    if (urls.length === 0) {
+      showStatus('NO LINKS FOUND');
+      return;
+    }
+    await chrome.windows.create({ url: urls, type: 'normal' });
+    showStatus(`OPENED ${urls.length}`);
+  } catch (error) {
+    console.error('Could not open clipboard links.', error);
+    showStatus('PASTE FAILED');
+  } finally {
+    elements.pasteButton.disabled = false;
+  }
+}
+
 function showStatus(message) {
   window.clearTimeout(statusTimer);
   elements.status.textContent = message;
@@ -161,5 +181,6 @@ async function initialize() {
 elements.allButton.addEventListener('click', selectAll);
 elements.noneButton.addEventListener('click', selectNone);
 elements.copyButton.addEventListener('click', copySelectedUrls);
+elements.pasteButton.addEventListener('click', pasteClipboardLinks);
 
 initialize();

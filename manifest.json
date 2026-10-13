@@ -1,12 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Tab Copy",
-  "version": "1.0.2",
-  "description": "Select tabs and copy their URLs in one clean list.",
+  "version": "1.1.0",
+  "description": "Copy selected tab URLs or paste clipboard links into a new window.",
   "homepage_url": "https://github.com/Majkey25/tab-copy-extension",
   "permissions": [
     "tabs",
-    "clipboardWrite"
+    "clipboardWrite",
+    "clipboardRead"
   ],
   "action": {
     "default_title": "Tab Copy",
