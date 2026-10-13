@@ -66,3 +66,60 @@ export function formatSelectedUrls(tabs, selectedIds) {
     .map((tab) => tab.url)
     .join('\n');
 }
+
+export function parseClipboardUrls(text) {
+  if (typeof text !== 'string') {
+    return [];
+  }
+
+  const entities = { amp: '&', quot: '"', apos: "'", lt: '<', gt: '>', nbsp: ' ' };
+  const decoded = text
+    .replace(/\\u([\da-f]{4})/gi, (_, hex) => String.fromCharCode(Number.parseInt(hex, 16)))
+    .replace(/\\\//g, '/')
+    .replace(/\\[nrt]/g, ' ')
+    .replace(/&(?:amp|quot|apos|lt|gt|nbsp|#\d+|#x[\da-f]+);/gi, (entity) => {
+      const name = entity.slice(1, -1).toLowerCase();
+      if (!name.startsWith('#')) {
+        return entities[name];
+      }
+      const code = name.startsWith('#x')
+        ? Number.parseInt(name.slice(2), 16)
+        : Number.parseInt(name.slice(1), 10);
+      return code <= 0x10ffff ? String.fromCodePoint(code) : entity;
+    });
+  const domain = String.raw`(?:[\p{L}\p{N}](?:[\p{L}\p{N}-]*[\p{L}\p{N}])?\.)+[\p{L}]{2,}`;
+  const start = `(?:https?:\\/\\/|(?:\\/\\/)?${domain})`;
+  const separated = decoded
+    .replace(new RegExp(`[,;](?=${start})`, 'giu'), ' ')
+    .replace(new RegExp(String.raw`([)\]}])(?=(?:\[[^\]\r\n]*\]\()?[(\[{]*${start})`, 'giu'), '$1 ');
+  const candidates = separated.match(new RegExp(
+    `(?:https?:\\/\\/|(?<![\\p{L}\\p{N}_@:/.-])(?:\\/\\/)?${domain})`
+    + `(?:'(?=[\\p{L}\\p{N}])|[^\\s<>"'\x60|\\\\])*`,
+    'giu',
+  )) || [];
+  const urls = [];
+
+  for (let candidate of candidates) {
+    candidate = candidate.replace(/^((?:(?:https?:)?\/\/)?[^/?#;,]+)[,;].*$/i, '$1');
+    // shortcut: trailing punctuation is prose; percent-encode it inside a URL.
+    candidate = candidate.replace(/[.,;!?]+$/g, '');
+    for (const [open, close] of [['(', ')'], ['[', ']'], ['{', '}']]) {
+      while (candidate.endsWith(close)
+        && candidate.split(close).length > candidate.split(open).length) {
+        candidate = candidate.slice(0, -1);
+      }
+    }
+    candidate = candidate.replace(/[.,;!?]+$/g, '');
+    try {
+      const url = new URL(/^https?:\/\//i.test(candidate)
+        ? candidate : `https://${candidate.replace(/^\/\//, '')}`);
+      if (['http:', 'https:'].includes(url.protocol) && url.hostname.replace(/\./g, '')) {
+        urls.push(url.href);
+      }
+    } catch {
+      // Ignore malformed URLs among the clipboard text.
+    }
+  }
+
+  return urls;
+}

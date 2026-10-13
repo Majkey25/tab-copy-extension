@@ -18,6 +18,7 @@
 
 <p align="center">
   Select individual browser tabs or a continuous range, then copy their URLs in the correct order.
+  Paste links from the clipboard to open them in a separate browser window.
 </p>
 
 ## Download
@@ -61,8 +62,10 @@ You can also open the [latest GitHub Release](https://github.com/Majkey25/tab-co
 - Select a continuous range with `Shift + Click`.
 - Select all tabs or clear the selection instantly.
 - Copy one URL per line in the original tab order.
+- Paste clipboard links into a new window, preserving their order and duplicates.
+- Extract web links from text, Markdown, HTML, JSON, and CSV, including domains without a protocol.
 - Minimal black and white interface.
-- No analytics, tracking, accounts, storage, or network requests.
+- No analytics, tracking, accounts, storage, or background network requests.
 - Works in Chromium browsers that support Manifest V3, including Chrome and Edge.
 
 <p align="center">
@@ -77,14 +80,19 @@ You can also open the [latest GitHub Release](https://github.com/Majkey25/tab-co
 4. Click **COPY**.
 5. Paste the URLs anywhere. Each URL is placed on its own line.
 
+To open links, copy any text containing links and click **PASTE LINKS FROM CLIPBOARD**. The extension reads the clipboard only after that click and opens the links as ordered tabs in one new window. The current window stays unchanged. Empty text or text without links opens no window.
+
+Supported links use HTTP or HTTPS. Domains such as `www.example.com` or `example.com/path` get HTTPS automatically. Newlines, spaces, tabs, commas, semicolons, and pipes can separate links. Trailing punctuation and unmatched closing brackets are treated as surrounding text. Percent-encode punctuation that belongs at the end of a URL, or separators inside a URL immediately followed by another domain or URL. Other protocols, including `javascript:`, `data:`, and `file:`, are ignored.
+
 ## Permissions
 
 | Permission | Why it is required |
 | --- | --- |
 | `tabs` | Reads the title and URL of tabs in the current browser window. |
 | `clipboardWrite` | Copies selected URLs after the user clicks **COPY**. |
+| `clipboardRead` | Reads clipboard text only after the user clicks **PASTE LINKS FROM CLIPBOARD**. |
 
-The extension does not send data anywhere and does not store browsing data.
+The extension does not send data to the developer or store browsing data. Opening pasted links contacts those websites through the browser normally.
 
 ## Install from source
 
@@ -134,7 +142,7 @@ GitHub Packages is intentionally not used. Browser extension ZIP files belong in
 
 ## Privacy
 
-Tab Copy reads tab titles and URLs locally and writes selected URLs to your system clipboard. It has no backend, telemetry, analytics, advertisements, or remote code. System clipboard history/sync can retain separate copies. See [privacy, data deletion, and terms of use](PRIVACY.md).
+Tab Copy reads tab titles and URLs locally, writes selected URLs to your system clipboard, and reads clipboard text only when you click the paste button. It has no backend, telemetry, analytics, advertisements, or remote code. Opening pasted links contacts their websites normally. System clipboard history/sync can retain separate copies. See [privacy, data deletion, and terms of use](PRIVACY.md).
 
 ## Contributing
 

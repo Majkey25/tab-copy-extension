@@ -1,16 +1,16 @@
 # Privacy and use of Tab Copy
 
-Updated 5 October 2026. Developer: Matěj Teplý, publishing as Majkey / Majkey25. Contact: [majkeylab@gmail.com](mailto:majkeylab@gmail.com).
+Updated 13 October 2026. Developer: Matěj Teplý, publishing as Majkey / Majkey25. Contact: [majkeylab@gmail.com](mailto:majkeylab@gmail.com).
 
 ## Data processed on your device
 
-When you open the popup, Tab Copy reads tab titles, URLs, and positions from the current browser window so you can select them. Clicking Copy writes the selected URLs to your system clipboard. The extension does not read page content or clipboard contents, save a browsing-history database, or send these data to the developer.
+When you open the popup, Tab Copy reads tab titles, URLs, and positions from the current browser window so you can select them. Clicking Copy writes the selected URLs to your system clipboard. Clicking Paste Links from Clipboard reads clipboard text, extracts HTTP and HTTPS links, and opens them as tabs in a new browser window. Clipboard contents are read only after that click. The extension does not read page content, save a browsing-history database, or send these data to the developer.
 
-Tab information and selections exist only in popup memory and are released when the popup closes. There is no account, persistent extension storage, cookie, analytics, telemetry, advertising SDK, remote code, or automatic network request. Tab information is used only for the selection and copy features, never for advertising, sale, or profiling.
+Tab information, selections, and pasted text exist only in popup memory and are released when the popup closes. There is no account, persistent extension storage, cookie, analytics, telemetry, advertising SDK, remote code, or automatic network request. Clicking Paste opens the extracted websites, which receive normal browser requests and may retain visits in browser history or process data under their own privacy policies. Tab and clipboard information is used only for the selection, copy, and paste features, never for advertising, sale, or profiling.
 
 ## Clipboard retention and deletion
 
-Copied URLs remain on the system clipboard until replaced or cleared. Your operating system's clipboard history or sync service, if enabled, can retain or sync separate copies outside this extension's control. Clear those through your system settings and delete any pasted copies where appropriate. Close the popup to clear its temporary tab list. Removing the extension stops future access; it does not clear the clipboard. The developer has no server copy of your tab list to delete.
+Copied URLs remain on the system clipboard until replaced or cleared. Pasting links does not change or clear the clipboard. Your operating system's clipboard history or sync service, if enabled, can retain or sync separate copies outside this extension's control. Clear those through your system settings and delete any pasted copies where appropriate. Close the popup to clear its temporary tab list and pasted text. Close opened tabs and clear browser history through your browser settings if needed. Removing the extension stops future access; it does not clear the clipboard, opened tabs, or browser history. The developer has no server copy of your tab list or clipboard text to delete.
 
 ## Support and external links
 
