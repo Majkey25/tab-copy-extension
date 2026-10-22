@@ -71,6 +71,9 @@ export function parseClipboardUrls(text) {
   if (typeof text !== 'string') {
     return [];
   }
+  if (text.length > 64 * 1024) {
+    throw new RangeError('CLIPBOARD TOO LARGE (MAX 64K CHARACTERS)');
+  }
 
   const entities = { amp: '&', quot: '"', apos: "'", lt: '<', gt: '>', nbsp: ' ' };
   const decoded = text
@@ -104,10 +107,14 @@ export function parseClipboardUrls(text) {
     // shortcut: trailing punctuation is prose; percent-encode it inside a URL.
     candidate = candidate.replace(/[.,;!?]+$/g, '');
     for (const [open, close] of [['(', ')'], ['[', ']'], ['{', '}']]) {
-      while (candidate.endsWith(close)
-        && candidate.split(close).length > candidate.split(open).length) {
-        candidate = candidate.slice(0, -1);
+      let excess = 0;
+      for (const character of candidate) {
+        if (character === close) excess += 1;
+        else if (character === open) excess -= 1;
       }
+      let end = candidate.length;
+      while (excess > 0 && candidate[end - 1] === close) { end -= 1; excess -= 1; }
+      candidate = candidate.slice(0, end);
     }
     candidate = candidate.replace(/[.,;!?]+$/g, '');
     try {
@@ -118,6 +125,9 @@ export function parseClipboardUrls(text) {
       }
     } catch {
       // Ignore malformed URLs among the clipboard text.
+    }
+    if (urls.length > 100) {
+      throw new RangeError('TOO MANY LINKS (MAX 100)');
     }
   }
 

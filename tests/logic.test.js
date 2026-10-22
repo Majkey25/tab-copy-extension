@@ -189,3 +189,17 @@ test('parseClipboardUrls extracts adjacent Markdown links', () => {
     'https://two.example/',
   ]);
 });
+
+test('parseClipboardUrls rejects oversized pastes and more than 100 links without truncation', () => {
+  assert.throws(() => parseClipboardUrls(' '.repeat(64 * 1024 + 1)), /CLIPBOARD TOO LARGE/);
+  assert.deepEqual(parseClipboardUrls(' '.repeat(64 * 1024)), []);
+  assert.equal(parseClipboardUrls('https://example.com\n'.repeat(100)).length, 100);
+  assert.throws(() => parseClipboardUrls('https://example.com\n'.repeat(101)), /TOO MANY LINKS/);
+});
+
+test('parseClipboardUrls trims long unmatched bracket suffixes while keeping balanced URL brackets', { timeout: 1000 }, () => {
+  for (const suffix of [')', ']', '}']) {
+    assert.deepEqual(parseClipboardUrls(`https://example.com/path${suffix.repeat(50000)}`), ['https://example.com/path']);
+  }
+  assert.deepEqual(parseClipboardUrls('https://example.com/(one)[two]{three})))'), ['https://example.com/(one)[two]%7Bthree%7D']);
+});

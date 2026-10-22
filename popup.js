@@ -146,7 +146,7 @@ async function pasteClipboardLinks() {
     showStatus(`OPENED ${urls.length}`);
   } catch (error) {
     console.error('Could not open clipboard links.', error);
-    showStatus('PASTE FAILED');
+    showStatus(error instanceof RangeError ? error.message : 'PASTE FAILED');
   } finally {
     elements.pasteButton.disabled = false;
   }
