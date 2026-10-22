@@ -63,6 +63,7 @@ You can also open the [latest GitHub Release](https://github.com/Majkey25/tab-co
 - Select all tabs or clear the selection instantly.
 - Copy one URL per line in the original tab order.
 - Paste clipboard links into a new window, preserving their order and duplicates.
+- Each paste accepts up to 100 links and 65,536 clipboard characters. Larger pastes show an error and open no tabs.
 - Extract web links from text, Markdown, HTML, JSON, and CSV, including domains without a protocol.
 - Minimal black and white interface.
 - No analytics, tracking, accounts, storage, or background network requests.

@@ -1,12 +1,10 @@
-# Tab Copy v1.1.0
+# Tab Copy v1.1.1
 
 ## Changes
 
-- Add **PASTE LINKS FROM CLIPBOARD** to open extracted web links as ordered tabs in one separate browser window.
-- Accept text lists, Markdown, HTML, JSON, CSV, and common separators. Domains without a protocol use HTTPS. Duplicate links retain their position.
-- Ignore malformed links and unsupported protocols. Empty clipboard text opens no window; clipboard or browser errors show **PASTE FAILED**.
-- Add `clipboardRead` permission. Clipboard text is read only after clicking Paste and is not stored or sent to the developer.
-- Keep existing tab selection and copy behavior.
+- Reject clipboard text above 65,536 characters or 100 links before opening any tabs.
+- Trim unmatched closing brackets in linear time to avoid freezing on long pasted URLs.
+- Show the relevant size limit in the popup while preserving supported link formats, order, and duplicates.
 
 Trailing punctuation is treated as surrounding text. Percent-encode it when it belongs to a URL. Opening pasted links makes normal browser requests to those websites.
 
